@@ -1,0 +1,7 @@
+Create a New Project and Explore the Canvas
+Customize the Text View
+Combine Views Using Stacks
+Create a Custom Image View
+Use SwiftUI Views From Other Frameworks
+Compose the Detail View
+Check Your Understanding
