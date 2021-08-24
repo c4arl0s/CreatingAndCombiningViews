@@ -11,6 +11,12 @@
 
 # [Creating And Combining Views](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
 
+This tutorial guides you through building Landmarks - an app for discovering and sharing the places you love. You will start by building the view that shows a landmark's details. 
+
+To lay out the views, Landmarks uses stacks to combine and layer the image and text view components. To add a map to the view, you will include a standard MapKit component. As you refine the view's design, Xcode provides real-time feedback so you can see how those changes translate into code.
+
+Download the Project files to begin building this project, and follow the steps below.
+
 # 1. [Create a New Project and Explore the Canvas](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
 # 2. [Customize the Text View](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
 # 3. [Combine Views Using Stacks](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
