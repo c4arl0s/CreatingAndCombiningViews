@@ -3,7 +3,7 @@
 # [Creating And Combining Views - Content](https://github.com/c4arl0s/creatingandcombiningviews#go-back-to-main)
 
 1. [x] [1. Create a New Project and Explore the Canvas](https://github.com/c4arl0s/creatingandcombiningviews#1-Create-a-New-Project-and-Explore-the-Canvas)
-2. [ ] [2. Customize the Text View](https://github.com/c4arl0s/creatingandcombiningviews#2-Customize-the-Text-View)
+2. [x] [2. Customize the Text View](https://github.com/c4arl0s/creatingandcombiningviews#2-Customize-the-Text-View)
 3. [ ] [3. Combine Views Using Stacks](https://github.com/c4arl0s/creatingandcombiningviews#3-Combine-Views-Using-Stacks)
 4. [ ] [4. Create a Custom Image View](https://github.com/c4arl0s/creatingandcombiningviews#4-Create-a-Custom-Image-View)
 5. [ ] [5. Use SwiftUI Views From Other Frameworks](https://github.com/c4arl0s/creatingandcombiningviews#5-Use-SwiftUI-Views-From-Other-Frameworks)
@@ -80,6 +80,49 @@ struct ContentView_Previews: PreviewProvider {
 ![Screen Recording 2021-08-24 at 8 07 38 2021-08-24 08_09_10](https://user-images.githubusercontent.com/24994818/130622045-baa8f362-1393-4403-836e-c4b8b99d8b44.gif)
 
 # 2. [Customize the Text View](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
+
+You can customize a view's display by changing your code, or by using the inspector to discover what's available and to help you write code.
+
+As you build the Landmarks app, you can use any combination of editors: the source editor, the canvas, or the inspectors. Your code stays updated, regardless of which tool you use.
+
+![Screen Shot 2021-08-25 at 7 59 12](https://user-images.githubusercontent.com/24994818/130794861-c7232b51-6457-476f-8063-64994f17983d.png)
+
+1. In the preview, Command-click the greeting to bring up the structured editing popover, and choose "Show SwiftUI inspector".
+
+![Screen Shot 2021-08-25 at 8 01 42](https://user-images.githubusercontent.com/24994818/130795227-2f6df3af-e333-4235-a0fd-42254bd21623.png)
+
+> the popover shows different attributes that you can customize, depending on the type of view you inspect.
+
+![Screen Shot 2021-08-25 at 8 04 33](https://user-images.githubusercontent.com/24994818/130795662-e70baf67-2fab-49ad-8a2a-e9e4adc62f52.png)
+
+2. Use the inspector to change the text to "Turtle Rock", the name of the first landmark you will show in your app.
+
+![Screen Shot 2021-08-25 at 8 06 25](https://user-images.githubusercontent.com/24994818/130795894-182145e9-8d3c-495c-ba60-99a14975ada9.png)
+
+![Screen Shot 2021-08-25 at 8 07 06](https://user-images.githubusercontent.com/24994818/130795998-faa24e88-d829-4149-b5e3-33c9d75c7a53.png)
+
+3. Change the Font modifier to "Title"
+
+> This applies the system font to the text so that it responds correctly to the user's preferred font sizes and settings.
+
+![Screen Recording 2021-08-25 at 8 09 57 2021-08-25 08_11_47](https://user-images.githubusercontent.com/24994818/130796674-00293261-0769-48b0-a567-5896348f64af.gif)
+
+To customize a SwiftUI view, you call methods called **modifiers**. Modifiers wrap a view to change its display or other properties. Each modifier returns a new view, so it's common to chain multiple modifiers, stacked vertically.
+
+4. Edit the code by hand to change the `padding()` modifier to the `foregroundColor(.green)` modifier, this changes the text's color to green.
+
+![Screen Shot 2021-08-25 at 8 16 13](https://user-images.githubusercontent.com/24994818/130797372-9b61e017-95d6-4cde-8b90-3a85b3e4fa4e.png)
+
+> Your code is always the source of truth for the view. When you use the inspector to change or remove a modifier, Xcode updates your code immediately to match.
+
+5. This time, open the inspector by Command-clicking on the Text declaration in the code editor, and then choose "Show SwiftUI inspector" from the popover. Click the Color pop-up menu and choose Inherited to change the text color to blue now)
+
+![Screen Recording 2021-08-25 at 8 19 56 2021-08-25 08_21_19](https://user-images.githubusercontent.com/24994818/130798134-dfb4856b-7bd8-4b8a-a515-c337e3e01767.gif)
+
+6. Notice that Xcode updates your code automatically to reflect the change, removing for `foregroundColor(.green)` modifier.
+
+![Screen Shot 2021-08-25 at 8 25 19](https://user-images.githubusercontent.com/24994818/130798743-51642919-6480-428a-893e-015360553b31.png)
+ 
 # 3. [Combine Views Using Stacks](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
 # 4. [Create a Custom Image View](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
 # 5. [Use SwiftUI Views From Other Frameworks](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
