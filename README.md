@@ -23,7 +23,7 @@ Create a new Xcode project that uses SwiftUI. Explore the canvas, previews, and 
 
 To preview and interact with views from the canvas in Xcode, and to use all the latest features describe throughout the tutorials, ensure your mac is running macOS Big Suer or later. (duh!)
 
-1. Open Xcode and either click "Create a new Xcode project" in Xcode's startup window, or choose File > New > Project.
+1. Open Xcode and either click "Create a new Xcode project" in Xcode's startup window, or choose [File > New > Project].
 2. In the template selector, select iOS as the platform, select the App template, and then Click Next.
 3. Enter "Landmarks" as the product name, select "SwiftUI" for the interface and "SwiftUI App" for the life cycle, and click next. Choose a location to save the Landsmarks project on your mac.
 
@@ -46,9 +46,9 @@ struct LandmarksApp: App {
 }
 ```
 
-5. In the project navigator, select ContentView.swift.
+5. In the project navigator, select `ContentView.swift`.
 
-> By default, SwiftUI views files declare two structures. The first structure conforms to the View protocol and describes the view's content and layout. The second structure declares a preview for that view.
+> By default, SwiftUI views files declare two structures. The first structure conforms to the `View` protocol and describes the view's content and layout. The second structure declares a preview for that view.
 
 ```swift
 import SwiftUI
@@ -69,7 +69,7 @@ struct ContentView_Previews: PreviewProvider {
 
 6. In the canvas, click Resume to display the preview.
 
-> If the canvas is not visible, select Editor > Canvas to show it.
+> If the canvas is not visible, select [Editor > Canvas] to show it.
 
 ![Screen Shot 2021-08-24 at 8 05 40](https://user-images.githubusercontent.com/24994818/130621479-21b7bc67-212c-4527-8b49-8a70c9c26abe.png)
 
@@ -190,7 +190,7 @@ struct ContentView: View {
 }
 ```
 
-5. Edit the VStack initializer to align the views by their leading edges.
+5. Edit the `VStack` initializer to align the views by their leading edges.
 
 > By default, stacks center their contents along their axis and provide context-appropiate spacing.
 
