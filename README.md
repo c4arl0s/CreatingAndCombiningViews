@@ -516,3 +516,277 @@ In a moment, you’ll see a map centered on Turtle Rock. You can manipulate the 
 <img width="995" alt="Screenshot 2023-02-12 at 10 45 01 a m" src="https://user-images.githubusercontent.com/24994818/218324620-bd0d2276-f4b9-4902-a0ed-7bba51adc18a.png">
 
 # 6. [Compose the Detail View](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
+
+You now have all of the components you need — the name and place, a circular image, and a map for the location.
+
+With the tools you’ve used so far, combine your custom views to create the final design for the landmark detail view.
+
+<img width="412" alt="Screenshot 2023-02-12 at 10 55 34 a m" src="https://user-images.githubusercontent.com/24994818/218325093-5f86c6e9-27c0-4b89-ac7c-0c0a194b0e0f.png">
+
+# Step 1
+
+In the Project navigator, select the `ContentView.swift` file.
+
+<img width="257" alt="Screenshot 2023-02-12 at 10 58 27 a m" src="https://user-images.githubusercontent.com/24994818/218325235-c4a7ff2b-f13e-43d1-a344-6fbc304f4572.png">
+
+# Step 2
+
+Embed the `VStack` that holds the three text views in another `VStack`.
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            VStack(alignment: .leading) {
+                Text("Turtle, Rock!")
+                    .font(.title)
+                    .foregroundColor(.blue)
+                HStack {
+                    Text("Joshua Tree National Park")
+                        .font(.subheadline)
+                    Spacer()
+                    Text("California")
+                        .font(.subheadline)
+                }
+            }
+            .padding()
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+```
+
+# Step 3
+
+Add your custom `MapView` to the top of the stack. Set the size of the `MapView` with `frame(width:height:)`.
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            MapView()
+                .frame(height: 300)
+            VStack(alignment: .leading) {
+                Text("Turtle, Rock!")
+                    .font(.title)
+                    .foregroundColor(.blue)
+                HStack {
+                    Text("Joshua Tree National Park")
+                        .font(.subheadline)
+                    Spacer()
+                    Text("California")
+                        .font(.subheadline)
+                }
+            }
+            .padding()
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+```
+
+<img width="988" alt="Screenshot 2023-02-12 at 11 06 18 a m" src="https://user-images.githubusercontent.com/24994818/218325629-652e7f2e-8dc4-4782-9c8e-a79b21bae99c.png">
+
+# Step 4
+
+Click Live Preview to see the rendered map in the composed view.
+
+![map](https://user-images.githubusercontent.com/24994818/218325893-a08287d4-7df1-4911-91f9-c426f069a8b1.gif)
+
+You can continue editing the view while showing a Live Preview.
+
+# Step 5
+
+Add the `CircleImage` view to the stack.
+
+```swift
+MapView()
+    .frame(height: 300)        
+            
+CircleImage()
+```
+
+# Step 6
+
+To layer the image view on top of the map view, give the image an offset of `-130` points vertically, and padding of `-130` points from the bottom of the view.
+
+These adjustments make room for the text by moving the image upwards.
+
+<img width="1010" alt="Screenshot 2023-02-12 at 11 16 38 a m" src="https://user-images.githubusercontent.com/24994818/218326196-597311e1-8a1c-4444-a36a-aabe738fd9ec.png">
+
+# Step 7
+
+Add a spacer at the bottom of the outer `VStack` to push the content to the top of the screen.
+
+```swift
+VStack {
+    MapView()
+    
+    CircleImage()
+    
+    VStack(alignment: .leading) {
+    }
+    
+    Spacer()
+}
+````
+
+<img width="1095" alt="Screenshot 2023-02-12 at 11 20 20 a m" src="https://user-images.githubusercontent.com/24994818/218326409-3eae8e63-3616-42f6-b6fe-636b672877cb.png">
+
+# Step 8
+
+To allow the map content to extend to the top edge of the screen, add the `ignoresSafeArea(edges: .top)` modifier to the map view.
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            MapView()
+                .ignoresSafeArea(edges: .top)
+                .frame(height: 300)
+            
+            CircleImage()
+                .offset(y: -130)
+                .padding(.bottom, -130)
+            
+            VStack(alignment: .leading) {
+                Text("Turtle, Rock!")
+                    .font(.title)
+                    .foregroundColor(.blue)
+                HStack {
+                    Text("Joshua Tree National Park")
+                        .font(.subheadline)
+                    Spacer()
+                    Text("California")
+                        .font(.subheadline)
+                }
+            }
+            .padding()
+            
+            Spacer()
+        }
+    }
+}
+```
+
+<img width="986" alt="Screenshot 2023-02-12 at 11 24 59 a m" src="https://user-images.githubusercontent.com/24994818/218326631-36cb3843-9963-4279-9f24-78b3fdadd608.png">
+
+# Step 9
+
+Add a `Divider()` and some additional descriptive text for the landmark.
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            MapView()
+                .ignoresSafeArea(edges: .top)
+                .frame(height: 300)
+            
+            CircleImage()
+                .offset(y: -130)
+                .padding(.bottom, -130)
+            
+            VStack(alignment: .leading) {
+                Text("Turtle, Rock!")
+                    .font(.title)
+                    .foregroundColor(.blue)
+                HStack {
+                    Text("Joshua Tree National Park")
+                        .font(.subheadline)
+                    Spacer()
+                    Text("California")
+                        .font(.subheadline)
+                }
+                
+                Divider()
+                
+                Text("About Turtle Rock")
+                    .font(.title2)
+                
+                Text("Description goes here")
+            }
+            .padding()
+            
+            Spacer()
+        }
+    }
+}
+```
+
+# Step 10
+
+Finally, move the `subheadline` font modifier from each Text view to the `HStack` containing them, and apply the secondary color to the `subheadline` text.
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            MapView()
+                .ignoresSafeArea(edges: .top)
+                .frame(height: 300)
+            
+            CircleImage()
+                .offset(y: -130)
+                .padding(.bottom, -130)
+            
+            VStack(alignment: .leading) {
+                Text("Turtle, Rock!")
+                    .font(.title)
+                    .foregroundColor(.blue)
+                HStack {
+                    Text("Joshua Tree National Park")
+                        .font(.subheadline)
+                    Spacer()
+                    Text("California")
+                        .font(.subheadline)
+                }
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                
+                Divider()
+                
+                Text("About Turtle Rock")
+                    .font(.title2)
+                
+                Text("Description goes here")
+            }
+            .padding()
+            
+            Spacer()
+        }
+    }
+}
+```
+
+<img width="966" alt="Screenshot 2023-02-12 at 11 43 57 a m" src="https://user-images.githubusercontent.com/24994818/218327677-c331769d-f643-435c-a4f6-5292c1135a53.png">
+
+When you apply a modifier to a layout view like a stack, SwiftUI applies the modifier to all the elements contained in the group.
+
+```swift
+HStack {
+    Text("Joshua Tree National Park")
+        .font(.subheadline)
+    Spacer()
+    Text("California")
+        .font(.subheadline)
+}
+.font(.subheadline)
+.foregroundColor(.secondary)
+```
