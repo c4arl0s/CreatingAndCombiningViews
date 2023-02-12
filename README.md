@@ -274,5 +274,162 @@ struct ContentView: View {
 ```
 
 # 4. [Create a Custom Image View](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
+
+With the name and location views all set, the next step is to add an image for the landmark.
+
+Instead of adding more code in this file, you’ll create a custom view that applies a mask, border, and drop shadow to the image.
+
+Start by adding an image to the project’s asset catalog.
+
+# Step 1
+
+Find turtlerock@2x.jpg in the project files’ Resources folder; drag it into the asset catalog’s editor. Xcode creates a new image set for the image.
+
+<img width="1000" alt="Screenshot 2023-02-11 at 9 09 55 p m" src="https://user-images.githubusercontent.com/24994818/218290776-f7294de2-5a1e-45ed-b76b-2d9d4f2a3e7b.png">
+
+Next, you’ll create a new SwiftUI view for your custom image view.
+
+# Step 2
+
+Choose `File > New > File` to open the template selector again. In the User Interface section, select **“SwiftUI View”** and click Next. Name the file `CircleImage.swift` and click Create.
+
+<img width="553" alt="Screenshot 2023-02-11 at 9 13 38 p m" src="https://user-images.githubusercontent.com/24994818/218290920-355f7bed-c9dc-4601-a95b-aa4d5e4a12a6.png">
+
+You’re ready to insert the image and modify its display to match the desired design.
+
+# Step 3
+
+Replace the text view with the image of Turtle Rock by using the `Image(_:)` initializer, passing it the name of the image to display.
+
+<img width="1002" alt="Screenshot 2023-02-11 at 9 16 02 p m" src="https://user-images.githubusercontent.com/24994818/218290981-bb093195-4364-4832-9d44-fcaf5ef7e6c7.png">
+
+```swiftUI
+import SwiftUI
+
+struct CircleImage: View {
+    var body: some View {
+        Image("turtlerock")
+    }
+}
+
+struct CircleImage_Previews: PreviewProvider {
+    static var previews: some View {
+        CircleImage()
+    }
+}
+```
+
+# Step 4
+
+Add a call to `clipShape(Circle()){  to apply the circular clipping shape to the image.
+
+The Circle type is a shape that you can use as a mask, or as a view by giving the circle a stroke or fill.
+
+<img width="995" alt="Screenshot 2023-02-11 at 9 20 06 p m" src="https://user-images.githubusercontent.com/24994818/218291098-af92bf20-3848-4fd6-b5bb-7efcbe1c4714.png">
+
+```swiftUI
+import SwiftUI
+
+struct CircleImage: View {
+    var body: some View {
+        Image("turtlerock")
+            .clipShape(Circle())
+    }
+}
+
+struct CircleImage_Previews: PreviewProvider {
+    static var previews: some View {
+        CircleImage()
+    }
+}
+```
+
+# Step 5
+
+Create another circle with a gray stroke, and then add it as an overlay to give the image a border.
+
+<img width="938" alt="Screenshot 2023-02-11 at 9 25 33 p m" src="https://user-images.githubusercontent.com/24994818/218291243-34a3bdf0-6e2b-4066-ab7b-3dce88a61545.png">
+
+```SwiftUI
+import SwiftUI
+
+struct CircleImage: View {
+    var body: some View {
+        Image("turtlerock")
+            .clipShape(Circle())
+            .overlay {
+                Circle().stroke(.gray, lineWidth: 4)
+            }
+    }
+}
+
+struct CircleImage_Previews: PreviewProvider {
+    static var previews: some View {
+        CircleImage()
+    }
+}
+```
+
+# Step 6
+
+Next, add a shadow with a 7 point radius.
+
+<img width="938" alt="Screenshot 2023-02-11 at 9 28 51 p m" src="https://user-images.githubusercontent.com/24994818/218291358-99e88454-f68c-404c-9b0f-3ebc44d62b65.png">
+
+```SwiftUI
+import SwiftUI
+
+struct CircleImage: View {
+    var body: some View {
+        Image("turtlerock")
+            .clipShape(Circle())
+            .overlay {
+                Circle().stroke(.gray, lineWidth: 4)
+            }
+            .shadow(radius: 7)
+    }
+}
+
+struct CircleImage_Previews: PreviewProvider {
+    static var previews: some View {
+        CircleImage()
+    }
+}
+```
+
+
+# Step 7
+
+Switch the border color to white. This completes the image view.
+
+<img width="940" alt="Screenshot 2023-02-11 at 9 31 14 p m" src="https://user-images.githubusercontent.com/24994818/218291435-650ac301-7fee-4ba3-a194-17bae884dac3.png">
+
+```SwiftUI
+import SwiftUI
+
+struct CircleImage: View {
+    var body: some View {
+        Image("turtlerock")
+            .clipShape(Circle())
+            .overlay {
+                Circle().stroke(.white, lineWidth: 4)
+            }
+            .shadow(radius: 7)
+    }
+}
+
+struct CircleImage_Previews: PreviewProvider {
+    static var previews: some View {
+        CircleImage()
+    }
+}
+```
+
+
+
+
+
+
+
 # 5. [Use SwiftUI Views From Other Frameworks](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
 # 6. [Compose the Detail View](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
