@@ -5,8 +5,8 @@
 1. [x] [1. Create a New Project and Explore the Canvas](https://github.com/c4arl0s/creatingandcombiningviews#1-Create-a-New-Project-and-Explore-the-Canvas)
 2. [x] [2. Customize the Text View](https://github.com/c4arl0s/creatingandcombiningviews#2-Customize-the-Text-View)
 3. [x] [3. Combine Views Using Stacks](https://github.com/c4arl0s/creatingandcombiningviews#3-Combine-Views-Using-Stacks)
-4. [ ] [4. Create a Custom Image View](https://github.com/c4arl0s/creatingandcombiningviews#4-Create-a-Custom-Image-View)
-5. [ ] [5. Use SwiftUI Views From Other Frameworks](https://github.com/c4arl0s/creatingandcombiningviews#5-Use-SwiftUI-Views-From-Other-Frameworks)
+4. [x] [4. Create a Custom Image View](https://github.com/c4arl0s/creatingandcombiningviews#4-Create-a-Custom-Image-View)
+5. [x] [5. Use SwiftUI Views From Other Frameworks](https://github.com/c4arl0s/creatingandcombiningviews#5-Use-SwiftUI-Views-From-Other-Frameworks)
 6. [ ] [6. Compose the Detail View](https://github.com/c4arl0s/creatingandcombiningviews#6-Compose-the-Detail-View)
 
 # [Creating And Combining Views](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
@@ -303,7 +303,7 @@ Replace the text view with the image of Turtle Rock by using the `Image(_:)` ini
 
 <img width="1002" alt="Screenshot 2023-02-11 at 9 16 02 p m" src="https://user-images.githubusercontent.com/24994818/218290981-bb093195-4364-4832-9d44-fcaf5ef7e6c7.png">
 
-```swiftUI
+```swift
 import SwiftUI
 
 struct CircleImage: View {
@@ -327,7 +327,7 @@ The Circle type is a shape that you can use as a mask, or as a view by giving th
 
 <img width="995" alt="Screenshot 2023-02-11 at 9 20 06 p m" src="https://user-images.githubusercontent.com/24994818/218291098-af92bf20-3848-4fd6-b5bb-7efcbe1c4714.png">
 
-```swiftUI
+```swift
 import SwiftUI
 
 struct CircleImage: View {
@@ -350,7 +350,7 @@ Create another circle with a gray stroke, and then add it as an overlay to give 
 
 <img width="938" alt="Screenshot 2023-02-11 at 9 25 33 p m" src="https://user-images.githubusercontent.com/24994818/218291243-34a3bdf0-6e2b-4066-ab7b-3dce88a61545.png">
 
-```SwiftUI
+```Swift
 import SwiftUI
 
 struct CircleImage: View {
@@ -376,7 +376,7 @@ Next, add a shadow with a 7 point radius.
 
 <img width="938" alt="Screenshot 2023-02-11 at 9 28 51 p m" src="https://user-images.githubusercontent.com/24994818/218291358-99e88454-f68c-404c-9b0f-3ebc44d62b65.png">
 
-```SwiftUI
+```Swift
 import SwiftUI
 
 struct CircleImage: View {
@@ -404,7 +404,7 @@ Switch the border color to white. This completes the image view.
 
 <img width="940" alt="Screenshot 2023-02-11 at 9 31 14 p m" src="https://user-images.githubusercontent.com/24994818/218291435-650ac301-7fee-4ba3-a194-17bae884dac3.png">
 
-```SwiftUI
+```Swift
 import SwiftUI
 
 struct CircleImage: View {
@@ -425,11 +425,94 @@ struct CircleImage_Previews: PreviewProvider {
 }
 ```
 
-
-
-
-
-
-
 # 5. [Use SwiftUI Views From Other Frameworks](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
+
+Next you’ll create a map that centers on a given coordinate. You can use the Map view from MapKit to render the map.
+
+<img width="446" alt="Screenshot 2023-02-12 at 10 13 38 a m" src="https://user-images.githubusercontent.com/24994818/218322770-c01712ac-6fa0-41d0-bd27-1819fb5b97c3.png">
+
+To get started, you’ll create a new custom view to manage your map.
+
+
+# Step 1
+
+Choose `File > New > File`, select iOS as the platform, select the “SwiftUI View” template, and click Next. Name the new file `MapView.swift` and click Create.
+
+# Step 2
+
+Add an import statement for MapKit.
+
+```swift
+import SwiftUI
+import MapKit
+```
+
+When you import SwiftUI and certain other frameworks in the same file, you gain access to SwiftUI-specific functionality provided by that framework.
+
+# Step 3
+
+Create a private state variable that holds the region information for the map.
+
+```swift
+import SwiftUI
+import MapKit
+
+struct MapView: View {
+    
+    @State private var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 34.011_286, longitude: -116.166_868), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+    )
+    
+    var body: some View {
+        Text("Hello, World!")
+    }
+}
+
+struct MapView_Previews: PreviewProvider {
+    static var previews: some View {
+        MapView()
+    }
+}
+```
+
+You use the `@State` attribute to establish a source of truth for data in your app that you can modify from more than one view. SwiftUI manages the underlying storage and automatically updates views that depend on the value.
+
+# Step 4
+
+Replace the default Text view with a Map view that takes a binding to the region.
+
+By prefixing a state variable with `$`, you pass a binding, which is like a reference to the underlying value. When the user interacts with the map, the map updates the region value to match the part of the map that’s currently visible in the user interface.
+
+```swift
+import SwiftUI
+import MapKit
+
+struct MapView: View {
+    
+    @State private var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 34.011_286, longitude: -116.166_868), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+    )
+    
+    var body: some View {
+        Map(coordinateRegion: $region)
+    }
+}
+
+struct MapView_Previews: PreviewProvider {
+    static var previews: some View {
+        MapView()
+    }
+}
+```
+
+When previews are in static mode, they only fully render native SwiftUI views. For the Map view, you’ll need to switch to a live preview to see it render.
+
+# Step 5
+
+Click Live Preview to switch the preview to live mode. You might need to click Try Again or Resume above your preview.
+
+In a moment, you’ll see a map centered on Turtle Rock. You can manipulate the map in live preview to zoom out a bit and see the surrounding area.
+
+<img width="995" alt="Screenshot 2023-02-12 at 10 45 01 a m" src="https://user-images.githubusercontent.com/24994818/218324620-bd0d2276-f4b9-4902-a0ed-7bba51adc18a.png">
+
 # 6. [Compose the Detail View](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
