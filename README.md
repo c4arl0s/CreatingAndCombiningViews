@@ -7,7 +7,7 @@
 3. [x] [3. Combine Views Using Stacks](https://github.com/c4arl0s/creatingandcombiningviews#3-Combine-Views-Using-Stacks)
 4. [x] [4. Create a Custom Image View](https://github.com/c4arl0s/creatingandcombiningviews#4-Create-a-Custom-Image-View)
 5. [x] [5. Use SwiftUI Views From Other Frameworks](https://github.com/c4arl0s/creatingandcombiningviews#5-Use-SwiftUI-Views-From-Other-Frameworks)
-6. [ ] [6. Compose the Detail View](https://github.com/c4arl0s/creatingandcombiningviews#6-Compose-the-Detail-View)
+6. [x] [6. Compose the Detail View](https://github.com/c4arl0s/creatingandcombiningviews#6-Compose-the-Detail-View)
 
 # [Creating And Combining Views](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
 
@@ -23,7 +23,7 @@ Create a new Xcode project that uses SwiftUI. Explore the canvas, previews, and 
 
 To preview and interact with views from the canvas in Xcode, and to use all the latest features describe throughout the tutorials, ensure your mac is running macOS Big Suer or later. (duh!)
 
-1. Open Xcode and either click "Create a new Xcode project" in Xcode's startup window, or choose [File > New > Project].
+1. Open Xcode and either click "Create a new Xcode project" in Xcode's startup window, or choose `[File > New > Project]`.
 2. In the template selector, select iOS as the platform, select the App template, and then Click Next.
 3. Enter "Landmarks" as the product name, select "SwiftUI" for the interface and "SwiftUI App" for the life cycle, and click next. Choose a location to save the Landsmarks project on your mac.
 
@@ -69,7 +69,7 @@ struct ContentView_Previews: PreviewProvider {
 
 6. In the canvas, click Resume to display the preview.
 
-> If the canvas is not visible, select [Editor > Canvas] to show it.
+> If the canvas is not visible, select `[Editor > Canvas]` to show it.
 
 ![Screen Shot 2021-08-24 at 8 05 40](https://user-images.githubusercontent.com/24994818/130621479-21b7bc67-212c-4527-8b49-8a70c9c26abe.png)
 
