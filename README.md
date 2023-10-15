@@ -1,5 +1,7 @@
 # [go back to main](https://github.com/c4arl0s/IntroducingSwiftUI#introducing-swiftui)
 
+Taken from https://developer.apple.com/tutorials/swiftui/creating-and-combining-views Apple content.
+
 # [Creating And Combining Views - Content](https://github.com/c4arl0s/creatingandcombiningviews#go-back-to-main)
 
 1. [x] [1. Create a New Project and Explore the Canvas](https://github.com/c4arl0s/creatingandcombiningviews#1-Create-a-New-Project-and-Explore-the-Canvas)
