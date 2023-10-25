@@ -10,6 +10,7 @@ Taken from https://developer.apple.com/tutorials/swiftui/creating-and-combining-
 4. [x] [4. Create a Custom Image View](https://github.com/c4arl0s/creatingandcombiningviews#4-Create-a-Custom-Image-View)
 5. [x] [5. Use SwiftUI Views From Other Frameworks](https://github.com/c4arl0s/creatingandcombiningviews#5-Use-SwiftUI-Views-From-Other-Frameworks)
 6. [x] [6. Compose the Detail View](https://github.com/c4arl0s/creatingandcombiningviews#6-Compose-the-Detail-View)
+7. [x] [7. What’s "some" thing?]()
 
 # [Creating And Combining Views](https://github.com/c4arl0s/creatingandcombiningviews#creating-and-combining-views---content)
 
@@ -792,3 +793,102 @@ HStack {
 .font(.subheadline)
 .foregroundColor(.secondary)
 ```
+
+# 7. [What’s "some" thing?]()
+
+<img width="622" alt="Screenshot 2023-10-24 at 7 13 13 p m" src="https://github.com/c4arl0s/CreatingAndCombiningViews/assets/24994818/0761f803-246c-4beb-b416-b866d9f362d3">
+
+Adding the keyword `some` in front of a return type indicates that the return type is `opaque`.
+
+# What is "opaque"?
+
+`Opaque` types are frequently referred to as `reverse generic types`. But that’s kind of hard to understand without any more explanation. So let’s try to go step-by-step and recall generics first.
+
+# Generics
+
+I have four base notes about `Generics`
+
+1. [5 Generics](https://github.com/c4arl0s/5GenericsAADSSwift#go-back-to-content)
+2. [Swift and Generics](https://github.com/c4arl0s/swift-generics#go-back-to-overview)
+3. [22 Generics in the Real World](https://github.com/c4arl0s/22genericsintherealworld#go-back-to-overview)
+4. [Swift documentation: Opaque and Boxed Types](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/opaquetypes/#)
+
+Generic types are basically placeholders you can use when you want to declare functions that work with multiple types. We use protocols to describe (or constrain) what a generic type can do without exposing its actual type. Generic types hide the actual type of a value within a function’s implementation.
+
+# What is ""Opaque"?
+
+Opaque types are frequently referred to as reverse generic types.
+
+# Opaque types
+
+Opaque types are the reverse in that the outside world doesn’t exactly know the type of a function’s return value. But inside the function’s implementation, you do know exactly what concrete types you’re dealing with.
+
+- With a generic type, the caller of the function determines the concrete type of the placeholder (“outside”).
+- With opaque types, the implementation determines the concrete type (“inside”).
+
+Swift provides two ways to hide details about a value’s type: `opaque types` and `boxed protocol types`. Hiding type information is useful at boundaries between a module and code that calls into the module, because the underlying type of the return value can remain private. Opaque types preserve type identity — the compiler has access to the type information, but clients of the module don’t.
+
+```swift
+import UIKit
+
+protocol Shape {
+    func draw() -> String
+}
+
+struct Triangle: Shape {
+    var size: Int
+    func draw() -> String {
+       var result: [String] = []
+       for length in 1...size {
+           result.append(String(repeating: "*", count: length))
+       }
+       return result.joined(separator: "\n")
+    }
+}
+
+let smallTriangle = Triangle(size: 3)
+print(smallTriangle.draw())
+
+struct FlippedShape<T: Shape>: Shape {
+    var shape: T
+    func draw() -> String {
+        let lines = shape.draw().split(separator: "\n")
+        return lines.reversed().joined(separator: "\n")
+    }
+}
+
+let flippedTriangle = FlippedShape(shape: smallTriangle)
+print(flippedTriangle.draw())
+
+struct JoinedShape<T: Shape, U: Shape>: Shape {
+    var top: T
+    var bottom: U
+    func draw() -> String {
+       return top.draw() + "\n" + bottom.draw()
+    }
+}
+
+let joinedTriangles = JoinedShape(top: smallTriangle, bottom: flippedTriangle)
+print(joinedTriangles.draw())
+
+struct Square: Shape {
+    var size: Int
+    func draw() -> String {
+        let line = String(repeating: "*", count: size)
+        let result = Array<String>(repeating: line, count: size)
+        return result.joined(separator: "\n")
+    }
+}
+
+func makeTrapezoid() -> some Shape {
+    let top = Triangle(size: 2)
+    let middle = Square(size: 2)
+    let bottom = FlippedShape(shape: top)
+    let trapezoid = JoinedShape(top: top, bottom: JoinedShape(top: middle, bottom: bottom))
+    return trapezoid
+}
+let trapezoid = makeTrapezoid()
+print(trapezoid.draw())
+```
+
+The `makeTrapezoid()` function in this example declares its return type as `some Shape`; as a result, the function returns a value of some given type that conforms to the Shape protocol, without specifying any particular concrete type.
